@@ -1,26 +1,22 @@
 import "./App.css";
 import JatekTer from "./JatekTer";
 import { useState } from "react";
-const lista = ["", "", "", "", "", "", "", "", ""];
-
+import TModel from "./model/Tmodel";
+const tmodel = new TModel();
 function App() {
-  const [aktElem, setAktElem] = useState(0);
+  const [list, setAktElem] = useState(tmodel.getList());
   function kattintas(index) {
-    if (lista[index]) {
-      
-    }
-
+    tmodel.setAllapot(index);
+    setAktElem(tmodel.getList());
     console.log(index);
-    setAktElem(index);
+
     /*itt kapja a gyerekkomponenstol az adatot*/
   }
   return (
     <div className="App">
-      <header className="App-header">
-        <p>tictactoe</p>
-      </header>
+      <header className="App-header">tictactoe</header>
       <article>
-        <JatekTer lista={lista} obj={lista[aktElem]="X"}  kattintas={kattintas} />
+        <JatekTer lista={list} kattintas={kattintas} />
       </article>
     </div>
   );
